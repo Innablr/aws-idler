@@ -1,0 +1,33 @@
+{
+  "name": "idler",
+  "version": "0.0.1",
+  "description": "Multipurpose AWS idler script",
+  "main": "invoke.js",
+  "engines": {
+    "node": ">=8.10.0"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "S3_BUCKET=idler.innablr-dev.lan node invoke.js"
+  },
+  "author": "Alex Bukharov",
+  "license": "MIT",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/npm/cli.git"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.320.0",
+    "js-yaml": "^3.12.0",
+    "lodash": "^4.17.11",
+    "moment": "^2.22.2",
+    "moment-timezone": "^0.5.21",
+    "winston": "^2.4.4"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^5.6.0",
+    "eslint-plugin-node": "^7.0.1",
+    "mocha": "^5.2.0"
+  }
+}
