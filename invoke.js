@@ -1,4 +1,4 @@
-const idlerHandler = require('./idler').handler;
+const idlerHandler = require('./build/idler').handler;
 
 const timeStamp = process.env['CURRENT_TIME'] || new Date().toISOString();
 

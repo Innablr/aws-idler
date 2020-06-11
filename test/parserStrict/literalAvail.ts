@@ -1,8 +1,8 @@
-const getParser = require('../../plugins/parsers/all');
-const expect = require('chai').expect;
-const moment = require('moment-timezone');
+import getParser from '../../src/plugins/parsers/all';
+import {expect} from 'chai';
+import * as moment from 'moment-timezone';
 
-const timeVariety = {
+const timeVariety: {[key: string]: moment.Moment} = {
     monday630: moment('2017-06-05 06:30'),
     monday1000: moment('2017-06-05 10:00'),
     friday1730: moment('2017-06-09 17:30'),

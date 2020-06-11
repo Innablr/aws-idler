@@ -1,0 +1,24 @@
+{
+    "defaults": {
+        "settings": {
+            "region": "ap-southeast-2",
+            "timezone": "Australia/Melbourne",
+            "timezoneTag": "Timezone"
+        },
+        "drivers": [{
+            "name": "ec2",
+            "active": true,
+            "pretend": false
+        }],
+        "plugins": [{
+            "name": "powercycle",
+            "active": true,
+            "configs": [{
+                "tagging": "strict",
+                "availabilityTag": "Availability"
+            }]
+        }]
+    },
+    "excludeAccounts": [],
+    "includeAccounts": []
+}

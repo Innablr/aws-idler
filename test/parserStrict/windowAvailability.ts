@@ -1,8 +1,8 @@
-const getParser = require('../../plugins/parsers/all');
-const expect = require('chai').expect;
-const moment = require('moment-timezone');
+import getParser from '../../src/plugins/parsers/all';
+import {expect} from 'chai';
+import * as moment from 'moment-timezone';
 
-const timePoints = {
+const timePoints: {[key: string]: moment.Moment} = {
     monday629: moment('2017-06-05 06:29'),
     monday630: moment('2017-06-05 06:30'),
     monday631: moment('2017-06-05 06:31'),
@@ -17,7 +17,7 @@ const timePoints = {
     tuesday0400: moment('2017-06-06 04:00')
 };
 
-const timePointsDays = {
+const timePointsDays: {[key: string]: moment.Moment} = {
     monday100: moment('2017-06-05 01:00'),
     monday625: moment('2017-06-05 06:25'),
     monday635: moment('2017-06-05 06:35'),
