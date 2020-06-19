@@ -1,0 +1,27 @@
+{
+    "defaults": {
+        "settings": {
+            "region": "ap-southeast-2",
+            "timezone": "Australia/Melbourne",
+            "timezoneTag": "Timezone",
+            "idlerRoleName": "powerCycle"
+        },
+        "drivers": {
+            "ec2": {
+                "active": true,
+                "pretend": false
+            }
+        },
+        "plugins": {
+            "powercycle": {
+                "active": true,
+                "configs": [{
+                    "tagging": "strict",
+                    "availabilityTag": "Availability"
+                }]
+            }
+        }
+    },
+    "excludeAccounts": [],
+    "includeAccounts": []
+}

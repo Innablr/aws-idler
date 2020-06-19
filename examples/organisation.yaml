@@ -1,0 +1,59 @@
+---
+defaults:
+  settings:
+    region: ap-southeast-2
+    timezone: Australia/Melbourne
+    timezoneTag: Timezone
+    idlerRoleName: ssPowerCycle
+  drivers:
+    ec2:
+      active: true
+      pretend: false
+    ebs:
+      active: true
+      pretend: false
+    snapshot:
+      active: true
+      pretend: false
+    rdsInstance:
+      active: true
+      pretend: false
+    rdsMultiAz:
+      active: true
+      pretend: false
+    rdsMultiAzSnapshot:
+      active: true
+      pretend: false
+    rdsCluster:
+      active: true
+      pretend: false
+    rdsClusterSnapshot:
+      active: true
+      pretend: false
+  plugins:
+    validateTags:
+      active: true
+      configs:
+        - tag: [ ProjectCode, Application, Service, Name, Availability ]
+          match: ''
+          tagMissing:
+            - warn
+            - stop
+          tagNotMatch:
+            - warn
+          allowSetFromParent: true
+        - tag: OwnerEmail
+          match: '[\w-]+@([\w-]+\.)+[\w-]+'
+          tagMissing:
+            - warn
+            - stop
+          tagNotMatch:
+            - warn
+          allowSetFromParent: true
+    powercycle:
+      active: true
+      configs:
+        - tagging: strict
+          availabilityTag: Availability
+
+organizationReadOnlyRoleArn: arn:aws:iam::439001261645:role/organisationsReadOnly

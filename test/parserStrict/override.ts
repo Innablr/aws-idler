@@ -1,6 +1,6 @@
-const getParser = require('../../plugins/parsers/all');
-const expect = require('chai').expect;
-const moment = require('moment-timezone');
+import getParser from '../../src/plugins/parsers/all';
+import {expect} from 'chai';
+import * as moment from 'moment-timezone';
 
 const timeNow = moment();
 

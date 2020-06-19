@@ -1,0 +1,40 @@
+{
+    "defaults": {
+        "settings": {
+            "region": "ap-southeast-2",
+            "timezone": "Australia/Melbourne",
+            "timezoneTag": "Timezone",
+            "idlerRoleName": "powerCycle"
+        },
+        "drivers": {
+            "ec2": {
+                "active": true,
+                "pretend": false
+            }
+        },
+        "plugins": {
+            "powercycle": {
+                "active": true,
+                "configs": [{
+                    "tagging": "strict",
+                    "availabilityTag": "Availability"
+                }]
+            }
+        }
+    },
+    "excludeAccounts": [],
+    "includeAccounts": [
+        {
+            "accountId": "000000000000",
+            "name": "testacc0"
+        },
+        {
+            "accountId": "111111111111",
+            "name": "testacc1"
+        },
+        {
+            "accountId": "222222222222",
+            "name": "testacc2"
+        }
+    ]
+}

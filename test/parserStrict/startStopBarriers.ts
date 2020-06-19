@@ -1,8 +1,8 @@
-const getParser = require('../../plugins/parsers/all');
-const expect = require('chai').expect;
-const moment = require('moment-timezone');
+import getParser from '../../src/plugins/parsers/all';
+import {expect} from 'chai';
+import * as moment from 'moment-timezone';
 
-const startBarriers = {
+const startBarriers: {[key: string]: moment.Moment} = {
     monday629: moment('2017-06-05 06:29'),
     monday630: moment('2017-06-05 06:30'),
     monday631: moment('2017-06-05 06:31'),
@@ -11,7 +11,7 @@ const startBarriers = {
     monday646: moment('2017-06-05 06:46'),
 };
 
-const stopBarriers = {
+const stopBarriers: {[key: string]: moment.Moment} = {
     monday1729: moment('2017-06-05 17:29'),
     monday1730: moment('2017-06-05 17:30'),
     monday1731: moment('2017-06-05 17:31'),
@@ -20,7 +20,7 @@ const stopBarriers = {
     monday1746: moment('2017-06-05 17:46'),
 };
 
-const startBarriersWithDays = {
+const startBarriersWithDays: {[key: string]: moment.Moment} = {
     monday: moment('2017-06-05 06:35'),
     tuesday: moment('2017-06-06 06:35'),
     wednesday: moment('2017-06-07 06:35'),
@@ -30,7 +30,7 @@ const startBarriersWithDays = {
     sunday: moment('2017-06-11 06:35'),
 };
 
-const stopBarriersWithDays = {
+const stopBarriersWithDays: {[key: string]: moment.Moment} = {
     monday: moment('2017-06-05 17:35'),
     tuesday: moment('2017-06-06 17:35'),
     wednesday: moment('2017-06-07 17:35'),
