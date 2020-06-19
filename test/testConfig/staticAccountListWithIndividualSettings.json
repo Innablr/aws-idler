@@ -3,21 +3,24 @@
         "settings": {
             "region": "ap-southeast-2",
             "timezone": "Australia/Melbourne",
-            "timezoneTag": "Timezone"
+            "timezoneTag": "Timezone",
+            "idlerRoleName": "powerCycle"
         },
-        "drivers": [{
-            "name": "ec2",
-            "active": true,
-            "pretend": false
-        }],
-        "plugins": [{
-            "name": "powercycle",
-            "active": true,
-            "configs": [{
-                "tagging": "strict",
-                "availabilityTag": "Availability"
-            }]
-        }]
+        "drivers": {
+            "ec2": {
+                "active": true,
+                "pretend": false
+            }
+        },
+        "plugins": {
+            "powercycle": {
+                "active": true,
+                "configs": [{
+                    "tagging": "strict",
+                    "availabilityTag": "Availability"
+                }]
+            }
+        }
     },
     "excludeAccounts": [],
     "includeAccounts": [
@@ -34,33 +37,30 @@
             "accountId": "111111111111",
             "name": "testacc1",
             "config": {
-                "drivers": [
-                    {
-                        "name": "ec2",
+                "drivers": {
+                    "ec2": {
                         "active": false
                     },
-                    {
-                        "name": "rds",
-                        "active": true
+                    "rds": {
+                        "active": true,
+                        "pretend": false
                     }
-                ]
+                }
             }
         },
         {
             "accountId": "222222222222",
             "name": "testacc2",
             "config": {
-                "plugins": [
-                    {
-                        "name": "powercycle",
+                "plugins": {
+                    "powercycle": {
                         "active": true,
                         "configs": [{
                             "tagging": "strict",
                             "availabilityTag": "Schedule"
                         }]
                     },
-                    {
-                        "name": "validateTags",
+                    "validateTags": {
                         "active": true,
                         "configs": [
                             {
@@ -77,7 +77,7 @@
                             }
                         ]
                     }
-                ]
+                }
             }
         }
     ]

@@ -1,4 +1,4 @@
-import Configuration, {readConfigObject} from '../src/lib/config';
+import Configuration, {readConfigObject, IncludedAccount} from '../src/lib/config';
 import * as chai from 'chai';
 import * as sinon from 'sinon';
 import * as sinonChai from 'sinon-chai';
@@ -84,12 +84,37 @@ describe('Idler Configuration', function() {
             });
         });
 
-        it('properly combines settings', async function() {
-            const r = new Configuration(staticAccountListWithIndividualSettings);
-            await r.configureIdler();
-            const accounts = r.idlerAccounts;
-            accounts.should.be.an('array').that.has.lengthOf(3);
-            accounts[0].name
+        describe('properly', function() {
+            let accounts: IncludedAccount[];
+            before(async function parseConfig() {
+                const r = new Configuration(staticAccountListWithIndividualSettings);
+                await r.configureIdler();
+                accounts = r.idlerAccounts;
+            });
+
+            it('doesn\'t duplicate or remove accounts and also maintains order', async function() {
+                accounts.should.be.an('array').that.has.lengthOf(3);
+                accounts[0].name.should.equal('000000000000');
+                accounts[1].name.should.equal('111111111111');
+                accounts[1].name.should.equal('222222222222');
+            });
+
+            it('merges global and individual settings in the correct order', async function() {
+                accounts[0].config.settings.region.should.equal('us-east-2');
+                accounts[0].config.settings.timezoneTag.should.equal('Timezone');
+            });
+
+            it('merges drivers lists correctly', async function() {
+                accounts[1].config.drivers.should.be.an('array').that.has.lengthOf(2);
+
+                accounts[1].config.drivers[0].name.should.equal('ec2');
+                accounts[1].config.drivers[0].active.should.equal(false);
+                accounts[1].config.drivers[0].pretend.should.equal(false);
+
+                accounts[1].config.drivers[1].name.should.equal('rds');
+                accounts[1].config.drivers[1].active.should.equal(false);
+            });
+
         });
     });
 });

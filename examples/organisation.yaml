@@ -4,34 +4,34 @@ defaults:
     region: ap-southeast-2
     timezone: Australia/Melbourne
     timezoneTag: Timezone
-    revolverRoleName: ssPowerCycle
+    idlerRoleName: ssPowerCycle
   drivers:
-    - name: ec2
+    ec2:
       active: true
       pretend: false
-    - name: ebs
+    ebs:
       active: true
       pretend: false
-    - name: snapshot
+    snapshot:
       active: true
       pretend: false
-    - name: rdsInstance
+    rdsInstance:
       active: true
       pretend: false
-    - name: rdsMultiAz
+    rdsMultiAz:
       active: true
       pretend: false
-    - name: rdsMultiAzSnapshot
+    rdsMultiAzSnapshot:
       active: true
       pretend: false
-    - name: rdsCluster
+    rdsCluster:
       active: true
       pretend: false
-    - name: rdsClusterSnapshot
+    rdsClusterSnapshot:
       active: true
       pretend: false
   plugins:
-    - name: validateTags
+    validateTags:
       active: true
       configs:
         - tag: [ ProjectCode, Application, Service, Name, Availability ]
@@ -50,7 +50,7 @@ defaults:
           tagNotMatch:
             - warn
           allowSetFromParent: true
-    - name: powercycle
+    powercycle:
       active: true
       configs:
         - tagging: strict

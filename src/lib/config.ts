@@ -10,7 +10,7 @@ interface IdlerSettings {
     region: string;
     timezone: string;
     timezoneTag: string;
-    revolverRoleName?: string;
+    idlerRoleName?: string;
 };
 
 interface DriverSettings {
@@ -31,15 +31,15 @@ interface AccountConfig {
     plugins: PluginSettings[];
 }
 
-interface IncludedAccount {
-    accountId: string;
-    name: string;
-    config: Partial<AccountConfig>;
-}
-
 interface ExcludedAccount {
     accountId: string;
     name?: string;
+}
+
+export interface IncludedAccount {
+    accountId: string;
+    name: string;
+    config: Partial<AccountConfig>;
 }
 
 export async function readConfigObject(configBucket: string, configKey: string): Promise<any> {
@@ -85,7 +85,9 @@ class Configuration {
             const merged: IncludedAccount = {
                 accountId: xa.accountId,
                 name: xa.name,
-                config: merge(this.defaultSettings, xa.config || {})
+                config: merge(this.defaultSettings, xa.config || {}, {
+                    arrayMerge: (destinationArray, sourceArray, options) => sourceArray
+                })
             };
             return merged;
         });

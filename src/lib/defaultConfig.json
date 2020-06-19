@@ -3,21 +3,24 @@
         "settings": {
             "region": "ap-southeast-2",
             "timezone": "Australia/Melbourne",
-            "timezoneTag": "Timezone"
+            "timezoneTag": "Timezone",
+            "idlerRoleName": "powerCycle"
         },
-        "drivers": [{
-            "name": "ec2",
-            "active": true,
-            "pretend": false
-        }],
-        "plugins": [{
-            "name": "powercycle",
-            "active": true,
-            "configs": [{
-                "tagging": "strict",
-                "availabilityTag": "Availability"
-            }]
-        }]
+        "drivers": {
+            "ec2": {
+                "active": true,
+                "pretend": false
+            }
+        },
+        "plugins": {
+            "powercycle": {
+                "active": true,
+                "configs": [{
+                    "tagging": "strict",
+                    "availabilityTag": "Availability"
+                }]
+            }
+        }
     },
     "excludeAccounts": [],
     "includeAccounts": []
